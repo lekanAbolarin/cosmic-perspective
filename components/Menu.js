@@ -192,7 +192,7 @@ const useStyles = makeStyles((theme) => ({
   phone: {
     fontWeight: "600",
   },
-  uaContainer: {
+  brandContainer: {
     width: "5vw",
     minWidth: "74px",
     margin: "0px 0px 0px 60px",
@@ -205,7 +205,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Menu = (props) => {
   const user = props.user;
-  const [menuOpen, toggleMenu] = useState(false);
+  const [menuOpen, toggleMenu] = useState(true);
   const [extendMenu, setExtendMenu] = useState(false);
   const [showBackDrop, toggleBackDrop] = useState(false);
   const [showBorder, toggleBorder] = useState(false);
@@ -218,37 +218,32 @@ const Menu = (props) => {
     : { transform: "translate(-100%, 0px)" };
 
   const links = ["Home", "About", "Contact"].map((item, index) => {
-        return (
-          <li className={classes.listItem} key={index}>
-            <Link href="">
-              <a>
-                <Typography
-                  variant="h6"
-                  className={classes.linkText}
-                  style={
-                    menuOpen
-                      ? {
-                          transform: "translate(0px, 0px)",
-                          transition: `transform 800ms ease ${
-                            index * 100 + 100
-                          }ms`,
-                        }
-                      : {
-                          transform: "translate(0px, 100%)",
-                          transition: `transform 800ms ease ${
-                            index * 100 + 100
-                          }ms`,
-                        }
-                  }
-                >
-                  {item}
-                </Typography>
-              </a>
-            </Link>
-          </li>
-        );
-      })
-    }
+    return (
+      <li className={classes.listItem} key={index}>
+        <Link href="">
+          <a>
+            <Typography
+              variant="h6"
+              className={classes.linkText}
+              style={
+                menuOpen
+                  ? {
+                      transform: "translate(0px, 0px)",
+                      transition: `transform 800ms ease ${index * 100 + 100}ms`,
+                    }
+                  : {
+                      transform: "translate(0px, 100%)",
+                      transition: `transform 800ms ease ${index * 100 + 100}ms`,
+                    }
+              }
+            >
+              {item}
+            </Typography>
+          </a>
+        </Link>
+      </li>
+    );
+  });
 
   const ret = (
     <div className={classes.root}>
@@ -265,8 +260,8 @@ const Menu = (props) => {
             : { ...menuHoverTransform }
         }
       >
-        <div className={classes.uaContainer}>
-          <UABrand />
+        <div className={classes.brandContainer}>
+          <div />
         </div>
         <div className={classes.menuLinks}>
           <ul className={classes.linkContainer}>{links}</ul>
