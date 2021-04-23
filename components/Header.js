@@ -1,19 +1,16 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core/";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
-import LocationOffIcon from "@material-ui/icons/LocationOff";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import UABrand from "./UABrand";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import Link from "./Link";
+import Typography from "./Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     height: "54px",
     position: "fixed",
-    backgroundColor: "white",
+    top: "0",
+    left: "0",
+    // backgroundColor: "white",
     [theme.breakpoints.up("sm")]: {
       height: "10vh",
     },
@@ -23,9 +20,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     zIndex: "200000",
   },
+  zIndex: "200000",
   brandContainer: {
-    width: "20vw",
+    minWidth: "20vw",
     marginLeft: "20px",
+    color: "white",
     [theme.breakpoints.up("sm")]: {
       width: "8vw",
       marginLeft: "40px",
@@ -81,30 +80,17 @@ const Header = (props) => {
   const home = (
     <div className={classes.root}>
       <div className={classes.brandContainer}>
-        <UABrand />
+        <Link href="/">
+          <a>
+            <Typography variant="subtitle1">COSMIC PERSPECTIVE</Typography>
+          </a>
+        </Link>
       </div>
       <div className={classes.spacer} />
-      <div className={classes.location}>
-        {/* {props.location.on ? <LocationOnIcon /> : <LocationOffIcon />} */}
-        <Typography variant="caption" className={classes.locationText}>
-          {props.location.position}
-        </Typography>
-      </div>
       <div className={classes.menuButton} />
-    </div>
-  );
-  const otherPath = (
-    <div className={classes.root}>
-      <div className={classes.backPath}>
-        <ArrowBackIcon />
-        <Typography variant="body1" className={classes.backPathText}>
-          {/* {currentPath} */}
-        </Typography>
-      </div>
     </div>
   );
   return props.showHeader ? home : "";
 };
 
-// export default withRouter(connect(mapStateToProps)(Header));
-export default connect(mapStateToProps)(Header);
+export default Header;
